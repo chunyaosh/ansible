@@ -66,7 +66,7 @@ options:
     description:
     - For extra logging
 author:
-Jamie Jordan
+    - Jamie Jordan
 '''
 
 EXAMPLES = '''

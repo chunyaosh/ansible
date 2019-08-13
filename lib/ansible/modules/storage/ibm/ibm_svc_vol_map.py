@@ -49,7 +49,7 @@ options:
     description:
     - For extra logging
 author:
-Chun Yao
+    - Chun Yao
 '''
 
 EXAMPLES = '''

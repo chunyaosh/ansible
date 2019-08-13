@@ -68,7 +68,7 @@ options:
     description:
     - For extra logging
 author:
-- John Hetherington
+    - John Hetherington
 '''
 EXAMPLES = '''
 - name: Create new mdiskgrp named pool1

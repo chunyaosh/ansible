@@ -64,7 +64,7 @@ options:
     - Debug logging to this file
     type: str
 author:
-- John Hetherington
+    - John Hetherington
 '''
 EXAMPLES = '''
 - name: Create new array mdisk named mdisk20
