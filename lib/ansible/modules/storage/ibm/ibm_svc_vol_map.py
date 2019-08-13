@@ -180,7 +180,7 @@ class IBMSVCvdiskhostmap(object):
 
         if 'message' in result:
             self.changed = True
-            self.debug("create vdiskhostmap result message '{}'".format(result['message']))
+            self.debug("create vdiskhostmap result message %s", result['message'])
         else:
             self.module.fail_json(
                 msg="Failed to create vdiskhostmap [%s]" % self.name)
