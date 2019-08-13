@@ -203,7 +203,7 @@ class IBMSVCvdisk(object):
         if self.easytier:
             cmdopts['easytier'] = self.easytier
         cmdopts['name'] = self.name
-        self.debug("creating vdisk command {} opts {}".format(cmd, cmdopts))
+        self.debug("creating vdisk command %s opts %s", cmd, cmdopts)
 
         # Run command
         result = self.restapi.svc_run_command(cmd, cmdopts, cmdargs=None)
