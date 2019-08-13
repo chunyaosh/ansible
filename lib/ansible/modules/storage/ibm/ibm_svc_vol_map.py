@@ -29,7 +29,7 @@ options:
   host:
     description:
       - host name H(host).
-    required: true    
+    required: true
   state:
     description:
       - Whether to create (C(present)), or remove (C(absent)) a vdisk group.
@@ -49,7 +49,7 @@ options:
     description:
     - For extra logging
 author:
-Chun Yao 
+Chun Yao
 '''
 
 EXAMPLES = '''
@@ -82,6 +82,7 @@ from traceback import format_exc
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.ibm_svc_utils import IBMSVCRestApi, svc_argument_spec
 from ansible.module_utils._text import to_native
+
 
 class IBMSVCvdiskhostmap(object):
     def __init__(self):

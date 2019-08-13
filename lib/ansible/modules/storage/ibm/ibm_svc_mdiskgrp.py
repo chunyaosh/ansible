@@ -35,7 +35,7 @@ options:
     - rest api
     type: str
     required: true
-  password:    
+  password:
   username:
     description:
     - rest api username
@@ -54,7 +54,7 @@ options:
   easytier:
     description:
     - Define whether to use easyier with the mdisk group
-    type: str 
+    type: str
     default: 'no'
   encrypt:
     description:
@@ -76,7 +76,7 @@ EXAMPLES = '''
     name: pool1
     state: present
     clustername: mcr-fab3-04
-    domain: 
+    domain:
     username: superuser
     password: letmein
     datareduction: no
@@ -110,6 +110,7 @@ from traceback import format_exc
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils._text import to_native
 from ansible.module_utils.ibm_svc_utils import IBMSVCRestApi, svc_argument_spec
+
 
 class IBMSVCmdiskgrp(object):
     def __init__(self):
@@ -188,7 +189,7 @@ class IBMSVCmdiskgrp(object):
         cmdopts['name'] = self.name
         self.debug("creating mdisk group command '{}' opts '{}'".format(cmd, cmdopts))
 
-        # Run command 
+        # Run command
         result = self.restapi.svc_run_command(cmd, cmdopts, cmdargs=None)
         self.debug("creating mdisk group result '{}'".format(result))
 
