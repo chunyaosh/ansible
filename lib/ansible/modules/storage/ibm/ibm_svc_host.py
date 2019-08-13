@@ -46,7 +46,7 @@ options:
         description:
             - fcwwpn for this host
         type: str
-        default: 'yes'
+        required: false
     iogrp:
         description:
             - iogrp
@@ -57,7 +57,6 @@ options:
         type: str
     type:
         description:
-            - type.
         type: str
     log_path:
         description:
@@ -210,15 +209,15 @@ class IBMSVChost(object):
 
         cmdopts['name'] = self.name
         #self.debug("creating host command '%s' opts '%s'" % (cmd, cmdopts))
-        self.debug("creating host command '%s' opts '%s'" % (self.fcwwpn, self.type))
+        self.debug("creating host command '%s' opts '%s'", self.fcwwpn, self.type)
 
         # Run command
         result = self.restapi.svc_run_command(cmd, cmdopts, cmdargs=None)
-        self.debug("create host result '{}'".format(result))
+        self.debug("create host result '%s'", result)
 
         if 'message' in result:
             self.changed = True
-            self.debug("create host result message '{}'".format(result['message']))
+            self.debug("create host result message '%s'", (result['message']))
         else:
             self.module.fail_json(
                 msg="Failed to create host [%s]" % self.name)
