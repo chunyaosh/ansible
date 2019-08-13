@@ -172,11 +172,11 @@ class IBMSVCvdiskhostmap(object):
         cmdopts['host'] = self.host
         cmdargs = [self.volname]
 
-        self.debug("creating vdiskhostmap command {} opts {} args{}".format(cmd, cmdopts, cmdargs))
+        self.debug("creating vdiskhostmap command %s opts %s args %s", cmd, cmdopts, cmdargs)
 
         # Run command
         result = self.restapi.svc_run_command(cmd, cmdopts, cmdargs)
-        self.debug("create vdiskhostmap result '{}'".format(result))
+        self.debug("create vdiskhostmap result %s", result)
 
         if 'message' in result:
             self.changed = True

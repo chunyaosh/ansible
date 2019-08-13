@@ -187,15 +187,15 @@ class IBMSVCmdiskgrp(object):
         if self.ext:
             cmdopts['ext'] = str(self.ext)
         cmdopts['name'] = self.name
-        self.debug("creating mdisk group command '{}' opts '{}'".format(cmd, cmdopts))
+        self.debug("creating mdisk group command %s opts %s", cmd, cmdopts)
 
         # Run command
         result = self.restapi.svc_run_command(cmd, cmdopts, cmdargs=None)
-        self.debug("creating mdisk group result '{}'".format(result))
+        self.debug("creating mdisk group result %s", result)
 
         if 'message' in result:
             self.changed = True
-            self.debug("creating mdisk group command result message '{}'".format(result['message']))
+            self.debug("creating mdisk group command result message %s", result['message'])
         else:
             self.module.fail_json(
                 msg="Failed to create mdisk group [%s]" % (self.name))

@@ -207,11 +207,11 @@ class IBMSVCvdisk(object):
 
         # Run command
         result = self.restapi.svc_run_command(cmd, cmdopts, cmdargs=None)
-        self.debug("create vdisk result '{}'".format(result))
+        self.debug("create vdisk result %s", result)
 
         if 'message' in result:
             self.changed = True
-            self.debug("create vdisk result message '{}'".format(result['message']))
+            self.debug("create vdisk result message %s", result['message'])
         else:
             self.module.fail_json(
                 msg="Failed to create vdisk [%s]" % self.name)
