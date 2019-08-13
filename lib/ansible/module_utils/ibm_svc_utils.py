@@ -12,8 +12,8 @@ __metaclass__ = type
 import json
 import logging
 
-from ansible.module_utils.basic                  import jsonify
-from ansible.module_utils.urls                   import open_url
+from ansible.module_utils.basic import jsonify
+from ansible.module_utils.urls import open_url
 from ansible.module_utils.six.moves.urllib.parse import quote
 from ansible.module_utils.six.moves.urllib.error import HTTPError
 
@@ -26,12 +26,12 @@ def svc_argument_spec():
     :rtype: dict
     """
     return dict(
-        clustername    = dict(type='str',  required=True),
-        domain         = dict(type='str',  default=None),
-        validate_certs = dict(type='bool', default=False),
-        username       = dict(type='str',  required=True),
-        password       = dict(type='str',  required=True, no_log=True),
-        log_path       = dict(type='str')
+        clustername=dict(type='str', required=True),
+        domain=dict(type='str', default=None),
+        validate_certs=dict(type='bool', default=False),
+        username=dict(type='str', required=True),
+        password=dict(type='str', required=True, no_log=True),
+        log_path=dict(type='str')
     )
 
 
@@ -55,11 +55,11 @@ class IBMSVCRestApi(object):
         :param validate_certs: whether or not the connection is insecure
         :type validate_certs: bool
         """
-        self.module         = module
-        self.clustername    = clustername
-        self.domain         = domain
-        self.username       = username
-        self.password       = password
+        self.module = module
+        self.clustername = clustername
+        self.domain = domain
+        self.username = username
+        self.password = password
         self.validate_certs = validate_certs
 
         # logging setup
