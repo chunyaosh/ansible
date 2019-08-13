@@ -208,7 +208,6 @@ class IBMSVChost(object):
             cmdopts['type'] = self.type
 
         cmdopts['name'] = self.name
-        # self.debug("creating host command '%s' opts '%s'" % (cmd, cmdopts))
         self.debug("creating host command '%s' opts '%s'", self.fcwwpn, self.type)
 
         # Run command
