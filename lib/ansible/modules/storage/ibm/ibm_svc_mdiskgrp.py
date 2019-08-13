@@ -107,9 +107,9 @@ import logging
 import time
 from traceback import format_exc
 
-from ansible.module_utils.basic            import AnsibleModule 
-from ansible.module_utils._text            import to_native
-from ansible.module_utils.ibm_svc_utils    import IBMSVCRestApi, svc_argument_spec
+from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils._text import to_native
+from ansible.module_utils.ibm_svc_utils import IBMSVCRestApi, svc_argument_spec
 
 class IBMSVCmdiskgrp(object):
     def __init__(self):
@@ -117,12 +117,12 @@ class IBMSVCmdiskgrp(object):
 
         argument_spec.update(
             dict(
-                name           = dict(type='str',  required=True),
-                state          = dict(type='str',  required=True, choices=['absent', 'present']),
-                datareduction  = dict(type='str',  default='no',  choices=['yes','no']),
-                easytier       = dict(type='str',  default=None,  choices=['on','off','auto']),
-                encrypt        = dict(type='str',  default='no',  choices=['yes','no']),
-                ext            = dict(type='int',  default=None)
+                name=dict(type='str',  required=True),
+                state=dict(type='str',  required=True, choices=['absent', 'present']),
+                datareduction=dict(type='str',  default='no',  choices=['yes','no']),
+                easytier=dict(type='str',  default=None,  choices=['on','off','auto']),
+                encrypt=dict(type='str',  default='no',  choices=['yes','no']),
+                ext=dict(type='int',  default=None)
             )
         )
 
@@ -140,29 +140,27 @@ class IBMSVCmdiskgrp(object):
             logging.basicConfig(level=logging.DEBUG, filename=log_path)
 
         # Required
-        self.name  = self.module.params['name']
+        self.name = self.module.params['name']
         self.state = self.module.params['state']
 
-        # Optional 
+        # Optional
         self.datareduction = self.module.params.get('datareduction', None)
-        self.easytier      = self.module.params.get('easytier', None)
-        self.encrypt       = self.module.params.get('encrypt', None)
-        self.ext           = self.module.params.get('ext', None)
+        self.easytier = self.module.params.get('easytier', None)
+        self.encrypt = self.module.params.get('encrypt', None)
+        self.ext = self.module.params.get('ext', None)
 
         self.restapi = IBMSVCRestApi(
-            module         = self.module,
-            clustername    = self.module.params['clustername'],
-            domain         = self.module.params['domain'],
-            username       = self.module.params['username'],
-            password       = self.module.params['password'],
-            validate_certs = self.module.params['validate_certs'],
-            log_path       = log_path
+            module=self.module,
+            clustername=self.module.params['clustername'],
+            domain=self.module.params['domain'],
+            username=self.module.params['username'],
+            password=self.module.params['password'],
+            validate_certs=self.module.params['validate_certs'],
+            log_path=log_path
         )
-
 
     def mdiskgrp_exists(self):
         return self.restapi.svc_obj_info(cmd='lsmdiskgrp', cmdopts=None, cmdargs=[self.name])
-
 
     def mdiskgrp_create(self):
         if self.module.check_mode:
@@ -205,7 +203,7 @@ class IBMSVCmdiskgrp(object):
     def mdiskgrp_delete(self):
         self.debug("deleting mdiskgrp '%s'", self.name)
 
-        cmd     = 'rmmdiskgrp'
+        cmd = 'rmmdiskgrp'
         cmdopts = None
         cmdargs = [self.name]
 
@@ -249,13 +247,11 @@ class IBMSVCmdiskgrp(object):
         self.debug("mdiskgrp_probe props='%s'", data)
         return props
 
-
     def apply(self):
         changed = False
         msg = None
 
         mdiskgrp_data = self.mdiskgrp_exists()
-        self.debug("chun 1 : %s", mdiskgrp_data)
 
         if mdiskgrp_data:
             if self.state == 'absent':
@@ -296,7 +292,6 @@ class IBMSVCmdiskgrp(object):
 
         self.module.exit_json(msg=msg, changed=changed)
 
-
 def main():
     v = IBMSVCmdiskgrp()
     try:
@@ -304,7 +299,6 @@ def main():
     except Exception as e:
         v.debug("Exception in apply(): \n%s", format_exc())
         v.module.fail_json(msg="Module failed. Error [%s]." % to_native(e))
-
 
 if __name__ == '__main__':
     main()

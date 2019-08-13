@@ -162,7 +162,6 @@ class IBMSVCvdisk(object):
 
         return merged_result
 
-
     # TBD: Implement a more generic way to check for properties to modify.
     def vdisk_probe(self, data):
         props = []
@@ -292,7 +291,6 @@ class IBMSVCvdisk(object):
 
         self.module.exit_json(msg=msg, changed=changed)
 
-
 def main():
     v = IBMSVCvdisk()
     try:
@@ -300,7 +298,6 @@ def main():
     except Exception as e:
         v.debug("Exception in apply(): \n%s", format_exc())
         v.module.fail_json(msg="Module failed. Error [%s]." % to_native(e))
-
 
 if __name__ == '__main__':
     main()

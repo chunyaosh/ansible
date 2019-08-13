@@ -79,11 +79,9 @@ RETURN = '''
 '''
 import logging
 from traceback import format_exc
-
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.ibm_svc_utils import IBMSVCRestApi, svc_argument_spec
 from ansible.module_utils._text import to_native
-
 
 class IBMSVCvdiskhostmap(object):
     def __init__(self):
@@ -114,7 +112,6 @@ class IBMSVCvdiskhostmap(object):
 
         # Optional
 
-
         self.restapi = IBMSVCRestApi(
             module=self.module,
             clustername=self.module.params['clustername'],
@@ -137,7 +134,6 @@ class IBMSVCvdiskhostmap(object):
             merged_result = data
 
         return merged_result
-
 
     # TBD: Implement a more generic way to check for properties to modify.
     def vdiskhostmap_probe(self, data):
@@ -259,7 +255,6 @@ class IBMSVCvdiskhostmap(object):
 
         self.module.exit_json(msg=msg, changed=changed)
 
-
 def main():
     v = IBMSVCvdiskhostmap()
     try:
@@ -267,7 +262,6 @@ def main():
     except Exception as e:
         v.debug("Exception in apply(): \n%s", format_exc())
         v.module.fail_json(msg="Module failed. Error [%s]." % to_native(e))
-
 
 if __name__ == '__main__':
     main()

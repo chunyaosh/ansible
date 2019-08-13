@@ -161,7 +161,6 @@ class IBMSVChost(object):
 
         return merged_result
 
-
     # TBD: Implement a more generic way to check for properties to modify.
     def host_probe(self, data):
         props = []
@@ -182,7 +181,7 @@ class IBMSVChost(object):
             self.changed = True
             return
 
-        if ( not self.fcwwpn ) and ( not self.iscsiname ):
+        if (not self.fcwwpn) and (not self.iscsiname):
             self.module.fail_json(msg="You must pass in fcwwpn or iscsiname to the module.")
         if self.fcwwpn and self.iscsiname:
             self.module.fail_json(msg="You must not pass in both fcwwpn and iscsiname to the module.")
@@ -208,7 +207,7 @@ class IBMSVChost(object):
             cmdopts['type'] = self.type
 
         cmdopts['name'] = self.name
-        self.debug("creating host command {} opts {}".format(cmd, cmdopts))
+        self.debug("creating host command '{}' opts '{}'".format(cmd, cmdopts))
 
         # Run command
         result = self.restapi.svc_run_command(cmd, cmdopts, cmdargs=None)
@@ -296,7 +295,6 @@ class IBMSVChost(object):
 
         self.module.exit_json(msg=msg, changed=changed)
 
-
 def main():
     v = IBMSVChost()
     try:
@@ -304,7 +302,6 @@ def main():
     except Exception as e:
         v.debug("Exception in apply(): \n%s", format_exc())
         v.module.fail_json(msg="Module failed. Error [%s]." % to_native(e))
-
 
 if __name__ == '__main__':
     main()
