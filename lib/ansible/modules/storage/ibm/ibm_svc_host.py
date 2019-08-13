@@ -7,7 +7,6 @@
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 from __future__ import absolute_import, division, print_function
-
 __metaclass__ = type
 
 ANSIBLE_METADATA = {'status': ['preview'],
@@ -18,56 +17,58 @@ DOCUMENTATION = '''
 ---
 module: ibm_svc_host
 short_description: Manage host commands
+version_added: "2.7"
+
 description:
   - Ansible interface to managing host commands mkhost, chhost, rmhost
-version_added: "2.7"
+
 options:
-  name:
-    description:
-      - host name H(host).
-    required: true
-  state:
-    description:
-      - Whether to create (H(present)), or remove (H(absent)) a host.
-    choices: [ absent, present ]
-    required: true
-  username:
-    description:
-    - rest api username
-    type: str
-    required: true
-  password:
-    description:
-    - rest api password
-    type: str
-    required: true
-  fcwwpn:
-    description:
-    - fcwwpn for this host
-    type: str
-    default: 'yes'
-  iogrp:
-    description:
-    - iogrp
-    type: str
-  protocol:
-    description:
-    - Protocol.
-    type: str
-  type:
-    description:
-    - type.
-    type: str
-  log_path:
-    description:
-    - For extra logging
+    name:
+        description:
+            - host name H(host).
+        required: true
+    state:
+        description:
+            - Whether to create (H(present)), or remove (H(absent)) a host.
+        choices: [ absent, present ]
+        required: true
+    username:
+        description:
+            - rest api username
+        type: str
+        required: true
+    password:
+        description:
+          - rest api password
+        type: str
+        required: true
+    fcwwpn:
+        description:
+            - fcwwpn for this host
+        type: str
+        default: 'yes'
+    iogrp:
+        description:
+            - iogrp
+        type: str
+    protocol:
+        description:
+            - Protocol.
+        type: str
+    type:
+        description:
+            - type.
+        type: str
+    log_path:
+        description:
+            - For extra logging
 author:
-Chun Yao
+    - Chun Yao
 '''
 
 EXAMPLES = '''
 - name: execute mkhost
-      ibm_svc_host:
+    ibm_svc_host:
         clustername: mcr-tb5-cluster-03
         domain: stglab.manchester.uk.ibm.com
         username: superuser
@@ -90,8 +91,10 @@ EXAMPLES = '''
         name: host4test
         state: absent
 '''
+
 RETURN = '''
 '''
+
 import logging
 from traceback import format_exc
 
