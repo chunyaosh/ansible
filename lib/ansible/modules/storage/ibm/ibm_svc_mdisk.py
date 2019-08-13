@@ -49,7 +49,7 @@ options:
   drive:
     description:
     - Drive or drives to use as members of the raid array
-    type: str 
+    type: str
   encrypt:
     description:
     - Define whether to use encryption with the mdisk
@@ -58,11 +58,11 @@ options:
   mdiskgrp:
     description:
     - The storage pool to which you want to add the mdisk
-    type: str 
+    type: str
   log_path:
     description:
     - Debug logging to this file
-    type: str 
+    type: str
 author:
 - John Hetherington
 '''
@@ -81,7 +81,7 @@ EXAMPLES = '''
 
 - name: Delete mdisk named mdisk20
   mdisk:
-    name: mdisk20 
+    name: mdisk20
     state: absent
     clustername: mcr-tb5-29-cl
     username: superuser
@@ -105,18 +105,19 @@ from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils._text import to_native
 from ansible.module_utils.ibm_svc_utils import IBMSVCRestApi, svc_argument_spec
 
+
 class IBMSVCmdisk(object):
     def __init__(self):
         argument_spec = svc_argument_spec()
 
         argument_spec.update(
             dict(
-                name=dict(type='str',  required=True),
-                state=dict(type='str',  required=True, choices=['absent', 'present']),
-                level=dict(type='str',  choices=['raid0','raid1','raid5','raid6','raid10']),
-                drive=dict(type='str',  default=None),
-                encrypt=dict(type='str',  default='no',  choices=['yes','no']),
-                mdiskgrp=dict(type='str',  required=True)
+                name=dict(type='str', required=True),
+                state=dict(type='str', required=True, choices=['absent', 'present']),
+                level=dict(type='str', choices=['raid0','raid1','raid5','raid6','raid10']),
+                drive=dict(type='str', default=None),
+                encrypt=dict(type='str', default='no', choices=['yes','no']),
+                mdiskgrp=dict(type='str', required=True)
             )
         )
 
@@ -137,7 +138,7 @@ class IBMSVCmdisk(object):
         self.name = self.module.params['name']
         self.state = self.module.params['state']
 
-        # Optional 
+        # Optional
         self.level=self.module.params.get('level', None)
         self.drive=self.module.params.get('drive', None)
         self.encrypt=self.module.params.get('encrypt', None)
@@ -185,7 +186,7 @@ class IBMSVCmdisk(object):
         cmdargs = [self.mdiskgrp]
         self.debug("creating mdisk command={} opts={} args={}".format(cmd, cmdopts, cmdargs))
 
-        # Run command 
+        # Run command
         result = self.restapi.svc_run_command(cmd, cmdopts, cmdargs)
         self.debug("create mdisk result '{}'".format(result))
 
@@ -284,6 +285,7 @@ class IBMSVCmdisk(object):
 
         self.module.exit_json(msg=msg, changed=changed)
 
+
 def main():
     v = IBMSVCmdisk()
     try:
@@ -291,6 +293,7 @@ def main():
     except Exception as e:
         v.debug("Exception in apply(): \n%s", format_exc())
         v.module.fail_json(msg="Module failed. Error [%s]." % to_native(e))
+
 
 if __name__ == '__main__':
     main()

@@ -152,7 +152,6 @@ class IBMSVChost(object):
 
         data = self.restapi.svc_obj_info(cmd='lshost', cmdopts=None, cmdargs=[self.name])
 
-
         if type(data) is list:
             for d in data:
                 merged_result.update(d)
@@ -295,6 +294,7 @@ class IBMSVChost(object):
 
         self.module.exit_json(msg=msg, changed=changed)
 
+
 def main():
     v = IBMSVChost()
     try:
@@ -302,6 +302,7 @@ def main():
     except Exception as e:
         v.debug("Exception in apply(): \n%s", format_exc())
         v.module.fail_json(msg="Module failed. Error [%s]." % to_native(e))
+
 
 if __name__ == '__main__':
     main()

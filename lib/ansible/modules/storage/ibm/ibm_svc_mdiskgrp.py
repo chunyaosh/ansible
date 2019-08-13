@@ -117,12 +117,12 @@ class IBMSVCmdiskgrp(object):
 
         argument_spec.update(
             dict(
-                name=dict(type='str',  required=True),
-                state=dict(type='str',  required=True, choices=['absent', 'present']),
-                datareduction=dict(type='str',  default='no',  choices=['yes','no']),
-                easytier=dict(type='str',  default=None,  choices=['on','off','auto']),
-                encrypt=dict(type='str',  default='no',  choices=['yes','no']),
-                ext=dict(type='int',  default=None)
+                name=dict(type='str', required=True),
+                state=dict(type='str', required=True, choices=['absent', 'present']),
+                datareduction=dict(type='str', default='no', choices=['yes', 'no']),
+                easytier=dict(type='str', default=None, choices=['on', 'off', 'auto']),
+                encrypt=dict(type='str', default='no', choices=['yes', 'no']),
+                ext=dict(type='int', default=None)
             )
         )
 
@@ -199,7 +199,6 @@ class IBMSVCmdiskgrp(object):
             self.module.fail_json(
                 msg="Failed to create mdisk group [%s]" % (self.name))
 
-
     def mdiskgrp_delete(self):
         self.debug("deleting mdiskgrp '%s'", self.name)
 
@@ -212,7 +211,6 @@ class IBMSVCmdiskgrp(object):
         # Any error will have been raised in svc_run_command
         # chmkdiskgrp does not output anything when successful.
         self.changed = True
-
 
     def mdiskgrp_update(self, modify):
         # updte the mdisk group
@@ -230,7 +228,6 @@ class IBMSVCmdiskgrp(object):
         # Any error will have been raised in svc_run_command
         # chmkdiskgrp does not output anything when successful.
         self.changed = True
-
 
     # TBD: Implement a more generic way to check for properties to modify.
     def mdiskgrp_probe(self, data):
@@ -292,6 +289,7 @@ class IBMSVCmdiskgrp(object):
 
         self.module.exit_json(msg=msg, changed=changed)
 
+
 def main():
     v = IBMSVCmdiskgrp()
     try:
@@ -299,6 +297,7 @@ def main():
     except Exception as e:
         v.debug("Exception in apply(): \n%s", format_exc())
         v.module.fail_json(msg="Module failed. Error [%s]." % to_native(e))
+
 
 if __name__ == '__main__':
     main()
