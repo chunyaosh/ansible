@@ -114,9 +114,9 @@ class IBMSVCmdisk(object):
             dict(
                 name=dict(type='str', required=True),
                 state=dict(type='str', required=True, choices=['absent', 'present']),
-                level=dict(type='str', choices=['raid0','raid1','raid5','raid6','raid10']),
+                level=dict(type='str', choices=['raid0', 'raid1', 'raid5', 'raid6', 'raid10']),
                 drive=dict(type='str', default=None),
-                encrypt=dict(type='str', default='no', choices=['yes','no']),
+                encrypt=dict(type='str', default='no', choices=['yes', 'no']),
                 mdiskgrp=dict(type='str', required=True)
             )
         )
@@ -139,10 +139,10 @@ class IBMSVCmdisk(object):
         self.state = self.module.params['state']
 
         # Optional
-        self.level=self.module.params.get('level', None)
-        self.drive=self.module.params.get('drive', None)
-        self.encrypt=self.module.params.get('encrypt', None)
-        self.mdiskgrp=self.module.params.get('mdiskgrp', None)
+        self.level = self.module.params.get('level', None)
+        self.drive = self.module.params.get('drive', None)
+        self.encrypt = self.module.params.get('encrypt', None)
+        self.mdiskgrp = self.module.params.get('mdiskgrp', None)
 
         self.restapi = IBMSVCRestApi(
             module=self.module,
@@ -297,4 +297,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
