@@ -184,15 +184,15 @@ class IBMSVCmdisk(object):
             cmdopts['encrypt'] = self.encrypt
         cmdopts['name'] = self.name
         cmdargs = [self.mdiskgrp]
-        self.debug("creating mdisk command={} opts={} args={}".format(cmd, cmdopts, cmdargs))
+        self.debug("creating mdisk command={} opts={} args={}", cmd, cmdopts, cmdargs)
 
         # Run command
         result = self.restapi.svc_run_command(cmd, cmdopts, cmdargs)
-        self.debug("create mdisk result '{}'".format(result))
+        self.debug("create mdisk result '{}'", result)
 
         if 'message' in result:
             self.changed = True
-            self.debug("create mdisk result message '{}'".format(result['message']))
+            self.debug("create mdisk result message '{}'", result['message'])
         else:
             self.module.fail_json(
                 msg="Failed to create mdisk [%s]" % (self.name))
