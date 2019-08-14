@@ -24,47 +24,58 @@ options:
     description:
       - Create mdisk name C(mdisk1).
     required: true
+    type: str
   state:
     description:
       - Whether to create (C(present)), or remove (C(absent)) the mdisk.
     choices: [ absent, present ]
     required: true
+    type: str
   clustername:
     description:
-    - name of host cluster
+      - name of host cluster
+    type: str
+  domain:
+    description:
+      - domain for IBM SVC storage
+    type: str
   username:
     description:
-    - rest api username
+      - rest api username
     type: str
     required: true
   password:
     description:
-    - rest api password
+      - rest api password
     type: str
     required: true
   level:
     description:
-    - raid level for the mdisk array being created
+      - raid level for the mdisk array being created
     type: str
   drive:
     description:
-    - Drive or drives to use as members of the raid array
+      - Drive or drives to use as members of the raid array
     type: str
   encrypt:
     description:
-    - Define whether to use encryption with the mdisk
+      - Define whether to use encryption with the mdisk
     type: str
     default: 'no'
   mdiskgrp:
     description:
-    - The storage pool to which you want to add the mdisk
+      - The storage pool to which you want to add the mdisk
     type: str
   log_path:
     description:
-    - Debug logging to this file
+      - Debug logging to this file
     type: str
+  validate_certs:
+    description:
+      - validate_certs
+    type: bool
 author:
-    - John Hetherington
+    - John Hetherington(@John)
 '''
 EXAMPLES = '''
 - name: Create new array mdisk named mdisk20
