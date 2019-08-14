@@ -35,7 +35,7 @@ options:
         required: true
         type: str
     clustername:
-        description: 
+        description:
             - clustername for IBM SVC storage
         type: str
     domain:
@@ -49,7 +49,7 @@ options:
         type: str
     password:
         description:
-          - rest api password
+            - rest api password
         required: true
         type: str
     fcwwpn:
@@ -59,7 +59,7 @@ options:
         type: str
     iscsiname:
         description:
-          - iscsiname
+            - iscsiname
         required: false
         type: str
     iogrp:
