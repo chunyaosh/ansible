@@ -7,7 +7,6 @@
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
-
 ANSIBLE_METADATA = {'metadata_version': '1.1',
                     'status': ['preview'],
                     'supported_by': 'community'}
@@ -102,12 +101,6 @@ EXAMPLES = '''
     mdiskgrp: pool20
 '''
 RETURN = '''
----
-msg:
-    description: State of mdisk
-    type: string
-    returned: always
-    sample: "Mdisk [xxx] has been created."
 '''
 
 import json
