@@ -83,7 +83,7 @@ options:
     description:
       - encrypt
     type: str
-    default: no
+    default: 'no'
     choices: ['yes', 'no']
 author:
     - John Hetherington(@John)
