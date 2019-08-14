@@ -83,7 +83,7 @@ options:
             - For extra logging
         type: str
     validate_certs:
-        description: 
+        description:
             - validate_certs
         type: bool
 author:
