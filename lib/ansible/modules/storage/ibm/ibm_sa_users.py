@@ -25,25 +25,30 @@ options:
         description:
             - User name.
         required: true
+        type: str
     state:
         description:
             - User desired state.
         required: true
         default: "present"
         choices: [ "present", "absent" ]
+        type: str
     domain:
         description:
             - Domain to add the user to.
         required: false
+        type: str
     category:
         description:
             - User desired category for storage management.
         choices: ["applicationadmin", "readonly", "securityadmin", "storageadmin", "storageintegrationadmin"]
         required: false
+        type: str
     user_pass:
         description:
             - user password. Not to be confused with the regular 'password' field, for the endpoint credentials.
         required: false
+        type: str
 extends_documentation_fragment:
     - ibm_storage
 author:
