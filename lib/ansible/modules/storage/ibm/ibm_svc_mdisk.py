@@ -49,19 +49,10 @@ options:
       - rest api password
     type: str
     required: true
-  level:
-    description:
-      - raid level for the mdisk array being created
-    type: str
   drive:
     description:
       - Drive or drives to use as members of the raid array
     type: str
-  encrypt:
-    description:
-      - Define whether to use encryption with the mdisk
-    type: str
-    default: 'no'
   mdiskgrp:
     description:
       - The storage pool to which you want to add the mdisk
