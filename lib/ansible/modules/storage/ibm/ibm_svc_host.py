@@ -1,4 +1,4 @@
-# !/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Copyright (C) 2019 IBM CORPORATION
@@ -27,29 +27,43 @@ options:
         description:
             - host name H(host).
         required: true
+        type: str
     state:
         description:
             - Whether to create (H(present)), or remove (H(absent)) a host.
         choices: [ absent, present ]
         required: true
+        type: str
+    clustername:
+        description:
+        type: str
+    domain:
+        description:
+        type: str
     username:
         description:
             - rest api username
-        type: str
         required: true
+        type: str
     password:
         description:
           - rest api password
-        type: str
         required: true
+        type: str
     fcwwpn:
         description:
             - fcwwpn for this host
-        type: str
         required: false
+        type: str
+    iscsiname:
+        description:
+          - iscsiname
+        required: false
+        type: str
     iogrp:
         description:
             - iogrp
+        default: '0:1:2:3'
         type: str
     protocol:
         description:
@@ -57,12 +71,14 @@ options:
         type: str
     type:
         description:
+        default: scsi
         type: str
     log_path:
         description:
             - For extra logging
+        type: str
 author:
-    - Chun Yao
+    - Chun Yao (@chunyao)
 '''
 
 EXAMPLES = '''
@@ -76,6 +92,7 @@ EXAMPLES = '''
         name: host4test
         state: present
         fcwwpn: 100000109B570216
+        iscsiname: iqn.1994-05.com.redhat:2e358e438b8a
         iogrp: 0:1:2:3
         protocol: scsi
         type: generic
