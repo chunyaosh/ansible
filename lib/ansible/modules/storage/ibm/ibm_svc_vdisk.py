@@ -1,4 +1,4 @@
-# !/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Copyright (C) 2019 IBM CORPORATION
@@ -31,6 +31,16 @@ options:
       - Whether to create (C(present)), or remove (C(absent)) a vdisk group.
     choices: [ absent, present ]
     required: true
+  clustername:
+    description:
+      - description
+    required: true
+    type: str
+  domain:
+    description:
+    - rest api
+    type: str
+    required: true
   username:
     description:
     - rest api username
@@ -41,7 +51,7 @@ options:
     - rest api password
     type: str
     required: true
-  mdisgrp:
+  mdiskgrp:
     description:
     - Specify pool for adding the vdisk to by name or ID
     type: str
@@ -50,7 +60,7 @@ options:
     description:
     - Define whether to use easyier with the vdisk
     type: str
-    default: 'no'
+    default: 'off'
     choices: [ on, off, auto ]
   size:
     description:
@@ -62,6 +72,10 @@ options:
     type: str
     choices: [ b, kb, mb, gb, tb, pb ]
     default: mb
+  validate_certs:
+    description:
+    - validate_certs
+    type: bool
   log_path:
     description:
     - For extra logging
@@ -115,7 +129,7 @@ class IBMSVCvdisk(object):
                 mdiskgrp=dict(type='str', required=False),
                 size=dict(type='str', required=False),
                 unit=dict(type='str', default='mb', choices=['b', 'kb', 'mb', 'gb', 'tb', 'pb']),
-                easytier=dict(type='str', default=None, choices=['on', 'off', 'auto'])
+                easytier=dict(type='str', default='off', choices=['on', 'off', 'auto'])
             )
         )
 

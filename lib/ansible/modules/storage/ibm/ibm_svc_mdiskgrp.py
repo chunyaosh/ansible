@@ -61,22 +61,31 @@ options:
     - Define whether to use data reduction pools on the mdisk group
     type: str
     default: 'no'
+    choices: ['yes', 'no']
   easytier:
     description:
     - Define whether to use easyier with the mdisk group
     type: str
-    default: 'no'
+    default: 'off'
+    choices: ['on', 'off', 'auto']
   encrypt:
     description:
     - Define whether to use encryption with the mdisk group
     type: str
     default: 'no'
+    choices: ['yes', 'no']
   ext:
     description:
     - Group size
+    type: int
   log_path:
     description:
     - For extra logging
+    type: str
+  validate_certs:
+    description:
+      - validate_certs
+    type: bool
 author:
     - John Hetherington(@John)
 '''
@@ -125,7 +134,7 @@ class IBMSVCmdiskgrp(object):
                 name=dict(type='str', required=True),
                 state=dict(type='str', required=True, choices=['absent', 'present']),
                 datareduction=dict(type='str', default='no', choices=['yes', 'no']),
-                easytier=dict(type='str', default=None, choices=['on', 'off', 'auto']),
+                easytier=dict(type='str', default='off', choices=['on', 'off', 'auto']),
                 encrypt=dict(type='str', default='no', choices=['yes', 'no']),
                 ext=dict(type='int', default=None)
             )
