@@ -70,12 +70,12 @@ options:
     protocol:
         description:
             - Protocol.
-        default: scsi
+        default: 'scsi'
         type: str
     type:
         description:
             - This is host type
-        default: generic
+        default:
         type: str
     log_path:
         description:
@@ -90,8 +90,8 @@ author:
 '''
 
 EXAMPLES = '''
-- name: execute mkhost
-    ibm_svc_host:
+- name: Define a new host
+  ibm_svc_host:
         clustername: mcr-tb5-cluster-03
         domain: stglab.manchester.uk.ibm.com
         username: superuser
@@ -105,8 +105,8 @@ EXAMPLES = '''
         protocol: scsi
         type: generic
 
-- name: execute rmhost
-    ibm_svc_host:
+- name: Delete host
+  ibm_svc_host:
         clustername: mcr-tb5-cluster-03
         domain: stglab.manchester.uk.ibm.com
         username: superuser
