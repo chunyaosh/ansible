@@ -38,6 +38,16 @@ options:
     choices: [ absent, present ]
     required: true
     type: str
+  clustername:
+    description:
+      - description
+    required: true
+    type: str
+  domain:
+    description:
+    - rest api
+    type: str
+    required: true
   username:
     description:
     - rest api username
@@ -52,6 +62,10 @@ options:
     description:
     - For extra logging
     type: str
+  validate_certs:
+    description:
+    - validate_certs
+    type: bool
 author:
     - Chun Yao(@Chunyao)
 '''

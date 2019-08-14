@@ -170,7 +170,7 @@ class IBMSVCvdisk(object):
 
         data = self.restapi.svc_obj_info(cmd='lsvdisk', cmdopts=None, cmdargs=[self.name])
 
-        if type(data) is list:
+        if isinstance(data, list):
             for d in data:
                 merged_result.update(d)
         else:
