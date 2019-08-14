@@ -53,7 +53,7 @@ options:
     - For extra logging
     type: str
 author:
-    - Chun Yao(@Chunyao) 
+    - Chun Yao(@Chunyao)
 '''
 
 EXAMPLES = '''
