@@ -35,10 +35,12 @@ options:
         required: true
         type: str
     clustername:
-        description:
+        description: 
+            - clustername for IBM SVC storage
         type: str
     domain:
         description:
+            - domain for IBM SVC storage
         type: str
     username:
         description:
@@ -68,15 +70,21 @@ options:
     protocol:
         description:
             - Protocol.
+        default: scsi
         type: str
     type:
         description:
-        default: scsi
+            - This is host type
+        default: generic
         type: str
     log_path:
         description:
             - For extra logging
         type: str
+    validate_certs:
+        description: 
+            - validate_certs
+        type: bool
 author:
     - Chun Yao (@chunyao)
 '''
