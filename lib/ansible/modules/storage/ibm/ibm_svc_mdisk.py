@@ -65,7 +65,7 @@ options:
     description:
       - validate_certs
     type: bool
-  level: 
+  level:
     description:
       - level
     type: str
