@@ -26,11 +26,13 @@ options:
     description:
       - vdisk name C(volume).
     required: true
+    type: str
   state:
     description:
       - Whether to create (C(present)), or remove (C(absent)) a vdisk group.
     choices: [ absent, present ]
     required: true
+    type: str
   clustername:
     description:
       - description
@@ -55,13 +57,12 @@ options:
     description:
     - Specify pool for adding the vdisk to by name or ID
     type: str
-    default: 'no'
   easytier:
     description:
     - Define whether to use easyier with the vdisk
     type: str
     default: 'off'
-    choices: [ on, off, auto ]
+    choices: [ 'on', 'off', 'auto' ]
   size:
     description:
     - Define size of vdisk
@@ -79,13 +80,14 @@ options:
   log_path:
     description:
     - For extra logging
+    type: str
 author:
     - Jamie Jordan(@Jamie)
 '''
 
 EXAMPLES = '''
 - name: execute mkvdisk
-      ibm_svc_vdisk:
+  ibm_svc_vdisk:
         clustername: mcr-tb5-cluster-03
         domain: stglab.manchester.uk.ibm.com
         username: superuser
@@ -99,7 +101,7 @@ EXAMPLES = '''
         unit: b
 
 - name: execute rmvdisk
-    ibm_svc_vdisk:
+  ibm_svc_vdisk:
         clustername: mcr-tb5-cluster-03
         domain: stglab.manchester.uk.ibm.com
         username: superuser

@@ -58,7 +58,7 @@ author:
 
 EXAMPLES = '''
 - name: map volume to host
-      ibm_svc_vol_map:
+  ibm_svc_vol_map:
         clustername: mcr-tb5-cluster-03
         domain: stglab.manchester.uk.ibm.com
         username: superuser
@@ -69,7 +69,7 @@ EXAMPLES = '''
         state: present
 
 - name: unmap volume from host
-    ibm_svc_vol_map:
+  ibm_svc_vol_map:
         clustername: mcr-tb5-cluster-03
         domain: stglab.manchester.uk.ibm.com
         username: superuser

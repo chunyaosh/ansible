@@ -42,7 +42,7 @@ options:
     type: str
     required: true
   password:
-    description: 
+    description:
       - description
     required: true
     type: str
