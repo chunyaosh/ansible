@@ -72,6 +72,7 @@ options:
             - Protocol.
         default: 'scsi'
         type: str
+        choices: [ "scsi", "nvme", "iscsi" ]
     type:
         description:
             - This is host type
@@ -179,7 +180,7 @@ class IBMSVChost(object):
 
         data = self.restapi.svc_obj_info(cmd='lshost', cmdopts=None, cmdargs=[self.name])
 
-        if type(data) is list:
+        if isinstance(data, list):
             for d in data:
                 merged_result.update(d)
         else:
