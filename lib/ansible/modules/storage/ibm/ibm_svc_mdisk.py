@@ -74,6 +74,16 @@ options:
     description:
       - validate_certs
     type: bool
+  level: 
+    description:
+      - level
+    type: str
+    choices: ['raid0', 'raid1', 'raid5', 'raid6', 'raid10']
+  encrypt:
+    description:
+      - encrypt
+    type: str
+    choices: ['yes', 'no']
 author:
     - John Hetherington(@John)
 '''
