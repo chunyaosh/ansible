@@ -80,6 +80,18 @@ options:
     description:
       - validate_certs
     type: bool
+  parentmdiskgrp:
+    description:
+      - parentmdiskgrp for sub pool
+    type: str
+  unit:
+    description:
+      - unit for sub pool
+    type: str 
+  size:
+    description:
+      - size for sub pool
+    type: int 
 author:
     - John Hetherington(@John)
 '''
