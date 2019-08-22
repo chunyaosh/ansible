@@ -142,7 +142,7 @@ class IBMSVCmdiskgrp(object):
                 datareduction=dict(type='str', default='no', choices=['yes', 'no']),
                 easytier=dict(type='str', default='off', choices=['on', 'off', 'auto']),
                 encrypt=dict(type='str', default='no', choices=['yes', 'no']),
-                ext=dict(type='int', default=None),
+                ext=dict(type='int'),
                 parentmdiskgrp=dict(type='str'),
                 size=dict(type='int'),
                 unit=dict(type='str')
