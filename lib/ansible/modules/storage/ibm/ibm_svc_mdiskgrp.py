@@ -172,6 +172,10 @@ class IBMSVCmdiskgrp(object):
         self.encrypt = self.module.params.get('encrypt', None)
         self.ext = self.module.params.get('ext', None)
 
+        self.parentmdiskgrp = self.module.params.get('parentmdiskgrp', None)
+        self.size = self.module.params.get('size', None)
+        self.unit = self.module.params.get('unit', None)
+
         self.restapi = IBMSVCRestApi(
             module=self.module,
             clustername=self.module.params['clustername'],
@@ -192,8 +196,8 @@ class IBMSVCmdiskgrp(object):
 
         # So ext is optional to mkmdiskgrp but make required in ansible
         # until all options for create are implemented.
-        if not self.ext:
-            self.module.fail_json(msg="You must pass in ext to the module.")
+        #if not self.ext:
+        #    self.module.fail_json(msg="You must pass in ext to the module.")
 
         self.debug("creating mdisk group '%s'", self.name)
 
@@ -201,7 +205,7 @@ class IBMSVCmdiskgrp(object):
         cmd = 'mkmdiskgrp'
         cmdopts = {}
 
-        if self.parentmdiskgrp != '':
+        if self.parentmdiskgrp:
             cmdopts['parentmdiskgrp'] = self.parentmdiskgrp
             if self.size:
                 cmdopts['size'] = self.size
@@ -250,11 +254,11 @@ class IBMSVCmdiskgrp(object):
         cmd = 'chmdiskgrp'
         cmdopts = {}
         # TBD: Be smarter handling many properties.
-        if 'easytier' in modify:
-            cmdopts['easytier'] = self.easytier
-        cmdargs = [self.name]
+        #if 'easytier' in modify:
+        #    cmdopts['easytier'] = self.easytier
+        #cmdargs = [self.name]
 
-        result = self.restapi.svc_run_command(cmd, cmdopts, cmdargs)
+        #result = self.restapi.svc_run_command(cmd, cmdopts, cmdargs)
 
         # Any error will have been raised in svc_run_command
         # chmkdiskgrp does not output anything when successful.
@@ -265,9 +269,9 @@ class IBMSVCmdiskgrp(object):
         props = []
 
         # TBD: The parameter is easytier but the view has easy_tier label.
-        if self.easytier:
-            if self.easytier != data['easy_tier']:
-                props += ['easytier']
+        #if self.easytier:
+        #    if self.easytier != data['easy_tier']:
+        #        props += ['easytier']
 
         if props is []:
             props = None
