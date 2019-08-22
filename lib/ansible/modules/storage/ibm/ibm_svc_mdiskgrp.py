@@ -130,7 +130,10 @@ class IBMSVCmdiskgrp(object):
                 datareduction=dict(type='str', default='no', choices=['yes', 'no']),
                 easytier=dict(type='str', default='off', choices=['on', 'off', 'auto']),
                 encrypt=dict(type='str', default='no', choices=['yes', 'no']),
-                ext=dict(type='int', default=None)
+                ext=dict(type='int', default=None),
+                parentmdiskgrp=dict(type='str'),
+                size=dict(type='int'),
+                unit=dict(type='str')
             )
         )
 
@@ -185,14 +188,22 @@ class IBMSVCmdiskgrp(object):
         # Make command
         cmd = 'mkmdiskgrp'
         cmdopts = {}
-        if self.datareduction:
-            cmdopts['datareduction'] = self.datareduction
-        if self.easytier:
-            cmdopts['easytier'] = self.easytier
-        if self.encrypt:
-            cmdopts['encrypt'] = self.encrypt
-        if self.ext:
-            cmdopts['ext'] = str(self.ext)
+
+        if self.parentmdiskgrp != '':
+            cmdopts['parentmdiskgrp'] = self.parentmdiskgrp
+            if self.size:
+                cmdopts['size'] = self.size
+            if self.unit:
+                cmdopts['unit'] = self.unit
+        else:
+            if self.datareduction:
+                cmdopts['datareduction'] = self.datareduction
+            if self.easytier:
+                cmdopts['easytier'] = self.easytier
+            if self.encrypt:
+                cmdopts['encrypt'] = self.encrypt
+            if self.ext:
+                cmdopts['ext'] = str(self.ext)
         cmdopts['name'] = self.name
         self.debug("creating mdisk group command %s opts %s", cmd, cmdopts)
 
