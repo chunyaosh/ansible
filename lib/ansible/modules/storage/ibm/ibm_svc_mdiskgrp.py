@@ -87,11 +87,11 @@ options:
   unit:
     description:
       - unit for sub pool
-    type: str 
+    type: str
   size:
     description:
       - size for sub pool
-    type: int 
+    type: int
 author:
     - John Hetherington(@John)
 '''
@@ -196,7 +196,7 @@ class IBMSVCmdiskgrp(object):
 
         # So ext is optional to mkmdiskgrp but make required in ansible
         # until all options for create are implemented.
-        #if not self.ext:
+        # if not self.ext:
         #    self.module.fail_json(msg="You must pass in ext to the module.")
 
         self.debug("creating mdisk group '%s'", self.name)
@@ -254,11 +254,11 @@ class IBMSVCmdiskgrp(object):
         cmd = 'chmdiskgrp'
         cmdopts = {}
         # TBD: Be smarter handling many properties.
-        #if 'easytier' in modify:
+        # if 'easytier' in modify:
         #    cmdopts['easytier'] = self.easytier
-        #cmdargs = [self.name]
+        # cmdargs = [self.name]
 
-        #result = self.restapi.svc_run_command(cmd, cmdopts, cmdargs)
+        # result = self.restapi.svc_run_command(cmd, cmdopts, cmdargs)
 
         # Any error will have been raised in svc_run_command
         # chmkdiskgrp does not output anything when successful.
@@ -269,7 +269,7 @@ class IBMSVCmdiskgrp(object):
         props = []
 
         # TBD: The parameter is easytier but the view has easy_tier label.
-        #if self.easytier:
+        # if self.easytier:
         #    if self.easytier != data['easy_tier']:
         #        props += ['easytier']
 
